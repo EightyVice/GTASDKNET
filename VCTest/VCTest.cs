@@ -22,12 +22,12 @@ namespace VCTest
                     CStreaming.RequestModel(7, StreamingFlags.PRIORITY_REQUEST);
                     CStreaming.LoadAllRequestedModels(false);
 
-                    CCivilianPed p = new CCivilianPed(ePedType.PEDTYPE_CIVFEMALE, 7);
+                    var p = new CCivilianPed(ePedType.PEDTYPE_CIVFEMALE, 7);
                     p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
                     var pos = CPed.FindPlayerPed().Placement.pos;
                     CWorld.Add(p);
                     p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
-                    Console.WriteLine("Spawned with address 0x{0} model id {1} at {2} {3} {4}", p.BaseAddress.ToString("X"), p.ModelIndex, p.Placement.pos.X, p.Placement.pos.Y, p.Placement.pos.Z);
+                    Console.WriteLine($"Spawned with address 0x{p.BaseAddress:X} model id {p.ModelIndex} at {p.Placement.pos.X} {p.Placement.pos.Y} {p.Placement.pos.Z}");
                     Thread.Sleep(500);
                 }
             }
