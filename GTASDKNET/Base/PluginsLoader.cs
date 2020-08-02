@@ -7,6 +7,7 @@ using System.Reflection;
 using System.IO;
 using System.CodeDom.Compiler;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace GTASDK
 {
@@ -21,6 +22,7 @@ namespace GTASDK
 
             _cmdLine = commandLine;
             Assemblies = new List<Assembly>();
+            Classes = new List<Type>();
             foreach (string file in Directory.GetFiles(directory))
             {
                 if (file.EndsWith(".net.dll"))
@@ -86,17 +88,21 @@ namespace GTASDK
                 }
             }
 
-            foreach (Type script in Classes)
+            foreach (Type plugin in Classes)
             {
                 // Search for all constructors in the script.
-                foreach (var ctor in script.GetConstructors())
+                foreach (var ctor in plugin.GetConstructors())
                 {
                     // Get all the parameters defined in the constructor
                     var param = ctor.GetParameters();
                     // If the constructor meets our requirements
                     if (param.Length == 1 && param[0].ParameterType == typeof(string[]))
                     {
-                        ctor.Invoke(new object[] { _cmdLine });
+                        Thread thread = new Thread(() =>
+                        {
+                            ctor.Invoke(new object[] { _cmdLine });
+                        });
+                        thread.Start();
                     }
                 }
             }

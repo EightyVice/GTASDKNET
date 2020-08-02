@@ -10,6 +10,7 @@ using GTASDK.ViceCity;
 
 namespace VCTest
 {
+    [PluginInfo(Author = "EightyVice", Game = GTAGame.ViceCity, Version = "1.0")]
     public class VCTest : Plugin
     {
         public VCTest(string[] cmdLine)
@@ -26,7 +27,6 @@ namespace VCTest
                     p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
                     var pos = CPed.FindPlayerPed().Placement.pos;
                     CWorld.Add(p);
-                    p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
                     Console.WriteLine("Spawned with address 0x{0} model id {1} at {2} {3} {4}", p.BaseAddress.ToString("X"), p.ModelIndex, p.Placement.pos.x, p.Placement.pos.y, p.Placement.pos.z);
                     Thread.Sleep(500);
                 }

@@ -16,6 +16,12 @@ namespace GTASDK
         ViceCity11en,
         ViceCitySteam,
     }
+    public enum GTAGame
+    {
+        III,
+        ViceCity,
+        SanAndreas
+    }
     class GameVersion
     {
         public static GTAVersion GetGameVersion()

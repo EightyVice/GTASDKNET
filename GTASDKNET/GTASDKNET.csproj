@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\PluginOptionsAttribute.cs" />
+    <Compile Include="Base\PluginInfoAttribute.cs" />
     <Compile Include="ViceCity\CCivilianPed.cs" />
     <Compile Include="Base\CVector.cs" />
     <Compile Include="Base\GameVersion.cs" />
