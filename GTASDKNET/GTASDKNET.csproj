@@ -100,7 +100,8 @@
     <Compile Include="ViceCity\CEntity.cs" />
     <Compile Include="ViceCity\CHud.cs" />
     <Compile Include="ViceCity\CMatrix.cs" />
-    <Compile Include="ViceCity\CPed.cs" />
+    <Compile Include="ViceCity\CPed.fields.cs" />
+    <Compile Include="ViceCity\CPed.methods.cs" />
     <Compile Include="ViceCity\CPhysical.cs" />
     <Compile Include="ViceCity\CPlaceable.cs" />
     <Compile Include="ViceCity\CPopulation.cs" />

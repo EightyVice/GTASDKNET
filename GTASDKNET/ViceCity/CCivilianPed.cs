@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace GTASDK.ViceCity
 {
     public class CCivilianPed : CPed

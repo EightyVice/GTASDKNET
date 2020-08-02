@@ -64,6 +64,7 @@ namespace GTASDK.ViceCity
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate IntPtr AddPed(int p, int m)
+        private delegate IntPtr AddPed(int p, int m);
+
     }
 }
