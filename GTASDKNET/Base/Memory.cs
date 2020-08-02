@@ -68,9 +68,9 @@ namespace GTASDK
         {
             unsafe
             {
-                *(float*)(pointer) = vector.x;
-                *(float*)(pointer + 4) = vector.y;
-                *(float*)(pointer + 8) = vector.z;
+                *(float*)(pointer) = vector.X;
+                *(float*)(pointer + 4) = vector.Y;
+                *(float*)(pointer + 8) = vector.Z;
             }
 
         }

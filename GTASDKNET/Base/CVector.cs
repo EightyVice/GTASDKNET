@@ -10,12 +10,12 @@ namespace GTASDK
     //[StructLayout(LayoutKind.Sequential)]
     public struct CVector
     {
-        public float x, y, z;
+        public float X, Y, Z;
 
-        public CVector(float X, float Y, float Z) { x = X; y = Y; z = Z; }
+        public CVector(float x, float y, float z) { X = x; Y = y; Z = z; }
         public static CVector operator +(CVector l, CVector r)
         {
-            return new CVector(l.x + r.x, l.x + r.y, l.z + l.y);
+            return new CVector(l.X + r.X, l.X + r.Y, l.Z + l.Y);
         }
        
         // todo Add operators

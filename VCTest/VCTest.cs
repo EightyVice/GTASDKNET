@@ -27,7 +27,7 @@ namespace VCTest
                     var pos = CPed.FindPlayerPed().Placement.pos;
                     CWorld.Add(p);
                     p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
-                    Console.WriteLine("Spawned with address 0x{0} model id {1} at {2} {3} {4}", p.BaseAddress.ToString("X"), p.ModelIndex, p.Placement.pos.x, p.Placement.pos.y, p.Placement.pos.z);
+                    Console.WriteLine("Spawned with address 0x{0} model id {1} at {2} {3} {4}", p.BaseAddress.ToString("X"), p.ModelIndex, p.Placement.pos.X, p.Placement.pos.Y, p.Placement.pos.Z);
                     Thread.Sleep(500);
                 }
             }
