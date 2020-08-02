@@ -7,6 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using GTASDK.Base;
+using System.Threading;
 
 namespace GTASDK
 {
@@ -61,17 +62,21 @@ namespace GTASDK
                 select cls;
             Classes = classes.ToArray();
 
-            foreach (var script in Classes)
+            foreach (var plugin in Classes)
             {
                 // Search for all constructors in the script.
-                foreach (var ctor in script.GetConstructors())
+                foreach (var ctor in plugin.GetConstructors())
                 {
                     // Get all the parameters defined in the constructor
                     var param = ctor.GetParameters();
                     // If the constructor meets our requirements
                     if (param.Length == 1 && param[0].ParameterType == typeof(string[]))
                     {
-                        ctor.Invoke(new object[] { _cmdLine });
+                        Thread thread = new Thread(() =>
+                        {
+                            ctor.Invoke(new object[] { _cmdLine });
+                        });
+                        thread.Start();
                     }
                 }
             }

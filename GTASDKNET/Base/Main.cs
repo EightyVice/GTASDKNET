@@ -11,18 +11,12 @@ namespace GTASDK
 {
     public class Main
     {
-        public static void Init(string cmdLine)
+        public static void Init()
         {
-            string[] cmds = cmdLine.Split(' ');
-            
             // Load plugins
             PluginsLoader loader = new PluginsLoader(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.GetCommandLineArgs());
             loader.LoadPluginAssemblies();
             loader.InitAllScripts();
-
-            // Setup plugins events
-            //PluginEventsManager pem = new PluginEventsManager(loader.Classes);
-
         }
     }
 }
