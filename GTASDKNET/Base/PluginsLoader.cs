@@ -13,16 +13,22 @@ namespace GTASDK
     internal class PluginsLoader
     {
         public IList<Assembly> Assemblies = new List<Assembly>();
-        public IList<Type> Classes = new List<Type>();
+        public IReadOnlyList<Type> Classes;
 
+        private readonly string _pluginDirectory;
         private readonly string[] _cmdLine;
 
         public PluginsLoader(string directory, string[] commandLine)
         {
+            _pluginDirectory = directory;
             _cmdLine = commandLine;
+        }
+
+        public void LoadPluginAssemblies()
+        {
             try
             {
-                Parallel.ForEach(Directory.GetFiles(directory), file =>
+                Parallel.ForEach(Directory.GetFiles(_pluginDirectory), file =>
                 {
                     switch (Path.GetExtension(file))
                     {
@@ -45,6 +51,7 @@ namespace GTASDK
                 Environment.Exit(1);
             }
         }
+
         public void InitAllScripts()
         {
             var classes =
@@ -52,8 +59,9 @@ namespace GTASDK
                 from cls in asm.GetTypes()
                 where cls.BaseType == typeof(Plugin)
                 select cls;
+            Classes = classes.ToArray();
 
-            foreach (var script in classes)
+            foreach (var script in Classes)
             {
                 // Search for all constructors in the script.
                 foreach (var ctor in script.GetConstructors())

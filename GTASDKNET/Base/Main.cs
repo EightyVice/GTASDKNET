@@ -17,6 +17,7 @@ namespace GTASDK
             
             // Load plugins
             PluginsLoader loader = new PluginsLoader(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.GetCommandLineArgs());
+            loader.LoadPluginAssemblies();
             loader.InitAllScripts();
 
             // Setup plugins events
