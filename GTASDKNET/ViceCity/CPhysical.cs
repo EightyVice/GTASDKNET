@@ -9,7 +9,7 @@ namespace GTASDK.ViceCity
 
     public class CPhysical : CEntity
     {
-        public CPhysical(IntPtr Address) :base(Address)
+        public CPhysical(IntPtr address) :base(address)
         {
 
         }

@@ -24,12 +24,12 @@ namespace GTASDK.ViceCity
         /// <summary>
         /// Shows a help message like "Cheat Activated" one.
         /// </summary>
-        /// <param name="Message">Message to be shown</param>
+        /// <param name="message">Message to be shown</param>
         /// <param name="quickMessage">Show it quickly then dismiss</param>
         /// <param name="permenantMessage">Show it permenantly</param>
-        public static void SetHelpMessage(string Message, bool quickMessage = false, bool permenantMessage = false)
+        public static void SetHelpMessage(string message, bool quickMessage = false, bool permenantMessage = false)
         {
-            Memory.CallFunction<CHud__SetHelpMessage>(0x55BFC0)(Message, quickMessage, permenantMessage);
+            Memory.CallFunction<CHud__SetHelpMessage>(0x55BFC0)(message, quickMessage, permenantMessage);
             
         }
         

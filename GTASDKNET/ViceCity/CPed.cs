@@ -36,7 +36,7 @@ namespace GTASDK.ViceCity
     }
     public class CPed : CPhysical
     {
-        public CPed(IntPtr Address): base(Address){
+        public CPed(IntPtr address): base(address){
 
         }
 

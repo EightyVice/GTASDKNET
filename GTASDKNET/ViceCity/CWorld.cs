@@ -13,9 +13,9 @@ namespace GTASDK.ViceCity
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CWorld__Add(IntPtr ptr);
-        public static void Add(CEntity Entity)
+        public static void Add(CEntity entity)
         {
-            Memory.CallFunction<CWorld__Add>(0x4DB3F0)((IntPtr)Entity.BaseAddress);
+            Memory.CallFunction<CWorld__Add>(0x4DB3F0)((IntPtr)entity.BaseAddress);
         }
     }
 }
