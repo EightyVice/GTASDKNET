@@ -19,7 +19,7 @@ namespace GTASDK.ViceCity
         private delegate IntPtr CPed__new(uint size);
         [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
         private delegate IntPtr CCivilianPed_Ctor(IntPtr _this, int pt, int m);
-        public CCivilianPed(ePedType pedType, int modelIndex) : base((IntPtr)0x00000)
+        public CCivilianPed(PedType pedType, int modelIndex) : base((IntPtr)0x00000)
         {
             IntPtr ptr = Memory.CallFunction<CPed__new>(0x50DA60)(0x648);
             IntPtr baseaddr = Memory.CallFunction<CCivilianPed_Ctor>(0x4EAE00)(ptr, (int)pedType, modelIndex);

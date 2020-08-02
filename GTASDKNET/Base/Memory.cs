@@ -146,9 +146,9 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static byte[] ReadByteArray(int pointer, int size)
+        public static byte[] ReadByteArray(int pointer, uint size)
         {
-            return GetSpan<byte>(pointer, size).ToArray();
+            return GetSpan<byte>(pointer, (int)size).ToArray();
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

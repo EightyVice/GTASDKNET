@@ -23,9 +23,9 @@ namespace VCTest
                     CStreaming.RequestModel(7, StreamingFlags.PRIORITY_REQUEST);
                     CStreaming.LoadAllRequestedModels(false);
 
-                    var p = new CCivilianPed(ePedType.PEDTYPE_CIVFEMALE, 7);
-                    p.Placement.pos = CPed.FindPlayerPed().Placement.pos;
-                    var pos = CPed.FindPlayerPed().Placement.pos;
+                    CCivilianPed p = new CCivilianPed(PedType.CIVFEMALE, 7);
+                    CVector playerpos = CPed.FindPlayerPed().Placement.pos;
+                    p.Placement.pos = playerpos;
                     CWorld.Add(p);
                     Console.WriteLine($"Spawned with address 0x{p.BaseAddress:X} model id {p.ModelIndex} at {p.Placement.pos.X} {p.Placement.pos.Y} {p.Placement.pos.Z}");
                     Thread.Sleep(500);

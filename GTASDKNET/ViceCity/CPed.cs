@@ -6,32 +6,31 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 namespace GTASDK.ViceCity
 {
-    public enum ePedType
+    public enum PedType
     {
-        PEDTYPE_PLAYER1,
-        PEDTYPE_PLAYER2,
-        PEDTYPE_PLAYER3,
-        PEDTYPE_PLAYER4,
-        PEDTYPE_CIVMALE,
-        PEDTYPE_CIVFEMALE,
-        PEDTYPE_COP,
-        PEDTYPE_GANG1,
-        PEDTYPE_GANG2,
-        PEDTYPE_GANG3,
-        PEDTYPE_GANG4,
-        PEDTYPE_GANG5,
-        PEDTYPE_GANG6,
-        PEDTYPE_GANG7,
-        PEDTYPE_GANG8,
-        PEDTYPE_GANG9,
-        PEDTYPE_EMERGENCY,
-        PEDTYPE_FIREMAN,
-        PEDTYPE_CRIMINAL,
-        PEDTYPE_UNUSED1,
-        PEDTYPE_PROSTITUTE,
-        PEDTYPE_SPECIAL,
-        PEDTYPE_UNUSED2,
-
+        PLAYER1,
+        PLAYER2,
+        PLAYER3,
+        PLAYER4,
+        CIVMALE,
+        CIVFEMALE,
+        COP,
+        GANG1,
+        GANG2,
+        GANG3,
+        GANG4,
+        GANG5,
+        GANG6,
+        GANG7,
+        GANG8,
+        GANG9,
+        EMERGENCY,
+        FIREMAN,
+        CRIMINAL,
+        UNUSED1,
+        PROSTITUTE,
+        SPECIAL,
+        UNUSED2,
         NUM_PEDTYPES
     }
     public class CPed : CPhysical

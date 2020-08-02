@@ -29,28 +29,37 @@ namespace GTASDK
             byte ValidByte = (byte)Memory.ReadByte(0x667BED);
             switch (ValidByte)
             {
-                case 0x53:
+                case 0x90:
                     return GTAVersion.ViceCity10en;                    
                 case 0x88:
                     return GTAVersion.ViceCity11en;
+                case 0x34:
+                    return GTAVersion.ViceCitySteam;
                 default:
                     return GTAVersion.UNKNOWN;       
                 // ... todo: more validating
             }
         }
 
-        public static IntPtr VCReturnAddressByGameVersion(int VC10enAddress, int VC11enAddress, int VCSteamAddress)
+        /// <summary>
+        /// Returns address by vice city version
+        /// </summary>
+        /// <param name="VC10enAddress">Vice City 10 EN Address</param>
+        /// <param name="VC11enAddress">Vice City </param>
+        /// <param name="VCSteamAddress"></param>
+        /// <returns></returns>
+        public static int VCRABV(int VC10enAddress, int VC11enAddress, int VCSteamAddress)
         {
             switch (GetGameVersion())
             {
                 case GTAVersion.ViceCity10en:
-                    return (IntPtr)VC10enAddress;                   
+                    return VC10enAddress;                   
                 case GTAVersion.ViceCity11en:
-                    return (IntPtr)VC11enAddress;
+                    return VC11enAddress;
                 case GTAVersion.ViceCitySteam:
-                    return (IntPtr)VCSteamAddress;
+                    return VCSteamAddress;
                 default:
-                    return (IntPtr)0x00000000;
+                    return 0x00000000;
             }
         }
     }
