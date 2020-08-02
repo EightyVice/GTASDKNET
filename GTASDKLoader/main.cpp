@@ -4,19 +4,17 @@ using namespace System;
 using namespace System::Reflection;
 using namespace System::Windows::Forms;
 
-wchar_t* commandLine = NULL;
+wchar_t* commandLine = nullptr;
 
 void Managed() {
-	Assembly^ assembly;
-
-	assembly = Assembly::LoadFrom("GTASDKNET.dll");
-	Type^ main = assembly->GetType("GTASDK.Main");
+	auto assembly = Assembly::LoadFrom("GTASDKNET.dll");
+	auto main = assembly->GetType("GTASDK.Main");
 
 	if (main) {
-		MethodInfo^ InitFunc = main->GetMethod("Init");
-		String^ cmdLine = gcnew String(commandLine);
+		auto initFunc = main->GetMethod("Init");
+		auto cmdLine = gcnew String(commandLine);
 		cmdLine->Replace("gta-vc.exe", "");
-		InitFunc->Invoke(nullptr, gcnew array<Object^>{cmdLine});
+		initFunc->Invoke(nullptr, gcnew array<Object^>{cmdLine});
 	}
 }
 
@@ -32,10 +30,10 @@ BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
 	switch (reason)
 	{
 	case DLL_PROCESS_ATTACH:
-		DWORD threadID = 0;
+		DWORD threadId = 0;
 		commandLine = GetCommandLine();
 
-		HANDLE threadHandle = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)GoManaged, nullptr, 0, &threadID);
+		const auto threadHandle = CreateThread(nullptr, 0, reinterpret_cast<LPTHREAD_START_ROUTINE>(GoManaged), nullptr, 0, &threadId);
 
 		if (threadHandle == nullptr || threadHandle == INVALID_HANDLE_VALUE)
 		{
