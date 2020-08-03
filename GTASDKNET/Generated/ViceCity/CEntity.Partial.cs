@@ -4,6 +4,9 @@ namespace GTASDK.ViceCity
 {
     public partial class CEntity
     {
+        /// <summary>Size of this type in native code, in bytes.</summary>
+        public const uint _Size = 0x64U;
+
         internal IntPtr _vtable
         {
             get => (IntPtr)(BaseAddress + 0x0);
