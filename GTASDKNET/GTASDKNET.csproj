@@ -88,6 +88,7 @@
     <Compile Include="Base\RoslynCompiler.cs" />
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
+    <Compile Include="Generated\ViceCity\CPopulation.Partial.cs" />
     <Compile Include="ViceCity\CCivilianPed.cs" />
     <Compile Include="Base\CVector.cs" />
     <Compile Include="Base\GameVersion.cs" />
