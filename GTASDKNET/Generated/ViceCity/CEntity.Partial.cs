@@ -8,10 +8,12 @@ namespace GTASDK.ViceCity
         /// <summary>Size of this type in native code, in bytes.</summary>
         public const uint _Size = 0x64U;
 
+
+
         internal IntPtr _vtable
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x0);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(BaseAddress + 0x0, (int)value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(BaseAddress + 0x0, (int)value);
         }
 
         // CPlaceable at offset 0x4
@@ -27,21 +29,21 @@ namespace GTASDK.ViceCity
         public IntPtr RwObject
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x4C);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(BaseAddress + 0x4C, (int)value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(BaseAddress + 0x4C, (int)value);
         }
         // PLACEHOLDER: Expose raw IntPtr
         // RpAtomic at offset 0x4C
         public IntPtr RwAtomic
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x4C);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(BaseAddress + 0x4C, (int)value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(BaseAddress + 0x4C, (int)value);
         }
         // PLACEHOLDER: Expose raw IntPtr
         // RpClump at offset 0x4C
         public IntPtr RwClump
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x4C);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(BaseAddress + 0x4C, (int)value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(BaseAddress + 0x4C, (int)value);
         }
         // End of union
 
@@ -307,7 +309,7 @@ namespace GTASDK.ViceCity
         public IntPtr FirstRef
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x60);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(BaseAddress + 0x60, (int)value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(BaseAddress + 0x60, (int)value);
         }
     }
 }
