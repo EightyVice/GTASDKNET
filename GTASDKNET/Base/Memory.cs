@@ -150,27 +150,30 @@ namespace GTASDK
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ReadBitsInt32(int bytePointer, byte position, int amount)
         {
-            return (((1 << amount) - 1) & (ReadInt32(bytePointer) >> (position - 1)));
+            var byteValue = *(int*)bytePointer;
+            return (byte)((byteValue >> position) & (1 << amount));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static byte ReadBitsInt8(int bytePointer, byte position, int amount)
+        public static unsafe byte ReadBitsInt8(int bytePointer, byte position, byte amount)
         {
-            return (byte) (((1 << amount) - 1) & (ReadByte(bytePointer) >> (position - 1)));
+            var byteValue = *(byte*)(bytePointer);
+            return (byte) ((byteValue >> position) & (1 << amount));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ReadBit(int bytePointer, byte bitIndex)
+        public static unsafe bool ReadBit(int bytePointer, byte bitIndex)
         {
-            return (ReadByte(bytePointer) & (1 << bitIndex)) != 0;
+            var byteValue = *(byte*)(bytePointer);
+            return (byteValue & (1 << bitIndex)) != 0;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void WriteBit(int bytePointer, byte bitIndex, bool value)
         {
-            var existingValue = ReadByte(bytePointer);
+            var existingValue = *(byte*)(bytePointer);
             var valueByte = *(byte*)(&value); // convert bool to byte, we might as well make it fast :P
-            WriteByte(bytePointer, (byte) (existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex)));
+            *(byte*)(bytePointer) = (byte) (existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex));
         }
         #endregion
 
