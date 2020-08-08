@@ -151,7 +151,7 @@ namespace GTASDK
         public static unsafe int ReadBitsInt32(int bytePointer, byte position, int amount)
         {
             var byteValue = *(int*)bytePointer;
-            return (byte)((byteValue >> position) & (1 << amount));
+            return (byteValue >> position) & (1 << amount);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
