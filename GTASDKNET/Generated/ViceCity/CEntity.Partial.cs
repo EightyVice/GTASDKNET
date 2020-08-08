@@ -20,7 +20,7 @@ namespace GTASDK.ViceCity
         public CPlaceable Placement
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => new CPlaceable((IntPtr)BaseAddress + 0x4);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => throw new InvalidOperationException("NOT DONE YET");
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.CopyRegion(BaseAddress + 0x4, value.BaseAddress, 0x48);
         }
 
         // Beginning of union of [RwObject, RwAtomic, RwClump]
