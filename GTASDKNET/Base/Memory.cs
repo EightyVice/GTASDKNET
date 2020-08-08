@@ -55,7 +55,7 @@ namespace GTASDK
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe CVector ReadVector(int pointer)
         {
-            return new CVector(*(float*)(pointer),
+            return new CVector(*(float*)pointer,
                 *(float*)(pointer + 4),
                 *(float*)(pointer + 8));
         }
@@ -63,7 +63,7 @@ namespace GTASDK
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void WriteVector(int pointer, CVector vector)
         {
-            *(float*)(pointer) = vector.X;
+            *(float*)pointer = vector.X;
             *(float*)(pointer + 4) = vector.Y;
             *(float*)(pointer + 8) = vector.Z;
         }
@@ -75,46 +75,46 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe int ReadInt32(int pointer) => *(int*)(pointer);
+        public static unsafe int ReadInt32(int pointer) => *(int*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteInt32(int pointer, int value) => *(int*)(pointer) = value;
+        public static unsafe void WriteInt32(int pointer, int value) => *(int*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe uint ReadUInt32(int pointer) => *(uint*)(pointer);
+        public static unsafe uint ReadUInt32(int pointer) => *(uint*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteUInt32(int pointer, uint value) => *(uint*)(pointer) = value;
+        public static unsafe void WriteUInt32(int pointer, uint value) => *(uint*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe short ReadInt16(int pointer) => *(short*)(pointer);
+        public static unsafe short ReadInt16(int pointer) => *(short*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteInt16(int pointer, short value) => *(short*)(pointer) = value;
+        public static unsafe void WriteInt16(int pointer, short value) => *(short*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe ushort ReadUInt16(int pointer) => *(ushort*)(pointer);
+        public static unsafe ushort ReadUInt16(int pointer) => *(ushort*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteUInt16(int pointer, ushort value) => *(ushort*)(pointer) = value;
+        public static unsafe void WriteUInt16(int pointer, ushort value) => *(ushort*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe byte ReadByte(int pointer) => *(byte*)(pointer);
+        public static unsafe byte ReadByte(int pointer) => *(byte*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteByte(int pointer, byte value) => *(byte*)(pointer) = value;
+        public static unsafe void WriteByte(int pointer, byte value) => *(byte*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe sbyte ReadSByte(int pointer) => *(sbyte*)(pointer);
+        public static unsafe sbyte ReadSByte(int pointer) => *(sbyte*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteSByte(int pointer, sbyte value) => *(sbyte*)(pointer) = value;
+        public static unsafe void WriteSByte(int pointer, sbyte value) => *(sbyte*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe float ReadFloat(int pointer) => *(float*)(pointer);
+        public static unsafe float ReadFloat(int pointer) => *(float*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteFloat(int pointer, float value) => *(float*)(pointer) = value;
+        public static unsafe void WriteFloat(int pointer, float value) => *(float*)pointer = value;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool Read4bBool(int pointer)
@@ -157,23 +157,23 @@ namespace GTASDK
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe byte ReadBitsInt8(int bytePointer, byte position, byte amount)
         {
-            var byteValue = *(byte*)(bytePointer);
+            var byteValue = *(byte*)bytePointer;
             return (byte) ((byteValue >> position) & (1 << amount));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe bool ReadBit(int bytePointer, byte bitIndex)
         {
-            var byteValue = *(byte*)(bytePointer);
+            var byteValue = *(byte*)bytePointer;
             return (byteValue & (1 << bitIndex)) != 0;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void WriteBit(int bytePointer, byte bitIndex, bool value)
         {
-            var existingValue = *(byte*)(bytePointer);
-            var valueByte = *(byte*)(&value); // convert bool to byte, we might as well make it fast :P
-            *(byte*)(bytePointer) = (byte) (existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex));
+            var existingValue = *(byte*)bytePointer;
+            var valueByte = *(byte*)&value; // convert bool to byte, we might as well make it fast :P
+            *(byte*)bytePointer = (byte) (existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex));
         }
         #endregion
 
