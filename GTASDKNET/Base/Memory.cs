@@ -69,6 +69,12 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void CopyRegion(int target, int source, uint length)
+        {
+            Buffer.MemoryCopy((void*) source, (void*) target, length, length);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe int ReadInt32(int pointer) => *(int*)(pointer);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
