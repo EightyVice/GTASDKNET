@@ -92,6 +92,7 @@
     <Compile Include="Base\RoslynCompiler.cs" />
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
+    <Compile Include="Generated\ViceCity\CPopulation.Partial.cs" />
     <Compile Include="ViceCity\CCivilianPed.cs" />
     <Compile Include="Base\CVector.cs" />
     <Compile Include="Base\GameVersion.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="ViceCity\CPopulation.cs" />
     <Compile Include="ViceCity\CStreaming.cs" />
     <Compile Include="ViceCity\CWorld.cs" />
-    <Compile Include="ViceCity\Templates\CEntity.Partial.cs" />
+    <Compile Include="Generated\ViceCity\CEntity.Partial.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="III\" />
@@ -120,7 +121,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="ViceCity\Templates\CEntity.yml" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.3.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GTASDK.ViceCity
 {
-    public static class CPopulation
+    public static partial class CPopulation
     {
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

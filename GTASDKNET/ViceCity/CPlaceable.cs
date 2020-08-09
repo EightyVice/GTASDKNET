@@ -10,9 +10,9 @@ namespace GTASDK.ViceCity
 
     public class CPlaceable : CMatrix
     {
-        public CPlaceable(int address)
+        public CPlaceable(IntPtr address)
         {
-            BaseAddress = address;
+            BaseAddress = address.ToInt32();
         }
     }
 }
