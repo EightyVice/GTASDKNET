@@ -48,9 +48,17 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TDelegate CallFunction<TDelegate>(int pointer)
+        public static TDelegate CallFunction<TDelegate>(int pointer) where TDelegate : Delegate
         {
             return Marshal.GetDelegateForFunctionPointer<TDelegate>((IntPtr)pointer);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe TDelegate CallVirtualFunction<TDelegate>(int vtablePointer, uint offset) where TDelegate : Delegate
+        {
+            var vtable = *(void***)vtablePointer; // a list of function pointers
+            var functionOffset = offset * sizeof(int); // offset to the function pointer from the start of the vtable
+            return Marshal.GetDelegateForFunctionPointer<TDelegate>((IntPtr)(vtable + functionOffset));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
