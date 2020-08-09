@@ -33,7 +33,7 @@ namespace GTASDK
                 {
                     switch (Path.GetExtension(file))
                     {
-                        case ".net.dll":
+                        case ".dll" when file.EndsWith(".net.dll"):
                             Assemblies.Add(Assembly.LoadFrom(file));
                             break;
                         case ".cs":

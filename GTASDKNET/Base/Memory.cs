@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyHook;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -226,6 +227,15 @@ namespace GTASDK
             return null;
         }
 
+        #endregion
+
+        #region Hooking
+        public static LocalHook Hook(IntPtr Address, Delegate functionDelegate)
+        {
+            var _hook = LocalHook.Create(Address, functionDelegate, null);
+            _hook.ThreadACL.SetInclusiveACL(new int[] { Process.GetCurrentProcess().Threads[0].Id });
+            return _hook;
+        }
         #endregion
     }
 }
