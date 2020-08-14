@@ -62,20 +62,10 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe CVector ReadVector(int pointer)
-        {
-            return new CVector(*(float*)pointer,
-                *(float*)(pointer + 4),
-                *(float*)(pointer + 8));
-        }
+        public static unsafe CVector ReadVector(int pointer) => *(CVector*)pointer;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteVector(int pointer, CVector vector)
-        {
-            *(float*)pointer = vector.X;
-            *(float*)(pointer + 4) = vector.Y;
-            *(float*)(pointer + 8) = vector.Z;
-        }
+        public static unsafe void WriteVector(int pointer, CVector vector) => *(CVector*)pointer = vector;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void CopyRegion(int target, int source, uint length)
