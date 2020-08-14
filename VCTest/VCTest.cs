@@ -26,30 +26,42 @@ namespace VCTest
         {
             AllocConsole();
 
-            Memory.Hook((IntPtr)0x55BFC0, new CHud__SetHelpMessage(HelpMessageHook));
+            //Memory.Hook((IntPtr)0x55BFC0, new CHud__SetHelpMessage(HelpMessageHook));
+            Memory.Hook((IntPtr)0x4A4410, new CGame._Process(GameProcessHook));
 
-            while (true)
-            {
-                if (IsKeyPressed(Keys.F5))
-                {
-                    CStreaming.RequestModel(7, StreamingFlags.PRIORITY_REQUEST);
-                    CStreaming.LoadAllRequestedModels(false);
+            //while (true)
+            //{
+            //    if (IsKeyPressed(Keys.F5))
+            //    {
+            //        CStreaming.RequestModel(7, StreamingFlags.PRIORITY_REQUEST);
+            //        CStreaming.LoadAllRequestedModels(false);
 
-                    CCivilianPed p = new CCivilianPed(PedType.CIVFEMALE, 7);
-                    CVector playerpos = CPed.FindPlayerPed().Placement.pos;
-                    p.Placement.pos = playerpos;
-                    CWorld.Add(p);
-                    Console.WriteLine($"Spawned with address 0x{p.BaseAddress:X} model id {p.ModelIndex} at {p.Placement.pos.X} {p.Placement.pos.Y} {p.Placement.pos.Z}");
-                    Thread.Sleep(500);
-                }
-            }
+            //        CCivilianPed p = new CCivilianPed(PedType.CIVFEMALE, 7);
+            //        CVector playerpos = CPed.FindPlayerPed().Placement.pos;
+            //        p.Placement.pos = playerpos;
+            //        CWorld.Add(p);
+            //        Console.WriteLine($"Spawned with address 0x{p.BaseAddress:X} model id {p.ModelIndex} at {p.Placement.pos.X} {p.Placement.pos.Y} {p.Placement.pos.Z}");
+            //        Thread.Sleep(500);
+            //    }
+            //}
+
+            //Events.GameTicking += GameTick;
         }
-
+        void GameTick()
+        {
+            //Console.WriteLine("Ticked");
+        }
         static void RequestModelHook(int model, int flag)
         {
             Console.WriteLine($"Requested model {model}");
             // Call original
             //CStreaming.RequestModel(model, (StreamingFlags)flag);
+        }
+
+        void GameProcessHook()
+        {
+            
+            //CGame.Process();
         }
         static void HelpMessageHook([MarshalAs(UnmanagedType.LPWStr)] string message, bool quickmessage, bool permenant)
         {

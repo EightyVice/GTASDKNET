@@ -64,6 +64,8 @@ namespace GTASDK
 
             foreach (var plugin in Classes)
             {
+                //var PluginStartFunction = plugin.GetMethod("PluginInit", BindingFlags.Static);
+                
                 // Search for all constructors in the script.
                 foreach (var ctor in plugin.GetConstructors())
                 {
@@ -74,6 +76,7 @@ namespace GTASDK
                     {
                         Thread thread = new Thread(() =>
                         {
+                            //PluginStartFunction.Invoke(null, null);
                             ctor.Invoke(new object[] { _cmdLine });
                         });
                         thread.Start();

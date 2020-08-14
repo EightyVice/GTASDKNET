@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GTASDK
@@ -199,7 +200,7 @@ namespace GTASDK
         public static LocalHook Hook(IntPtr Address, Delegate functionDelegate)
         {
             var _hook = LocalHook.Create(Address, functionDelegate, null);
-            _hook.ThreadACL.SetInclusiveACL(new int[] { Process.GetCurrentProcess().Threads[0].Id });
+            _hook.ThreadACL.SetExclusiveACL(new int[] {0});           
             return _hook;
         }
         #endregion
