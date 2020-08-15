@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using System.Windows.Forms;
+using GTASDK.ViceCity;
+
 namespace GTASDK
 {
     public class Plugin
@@ -22,5 +24,26 @@ namespace GTASDK
         {
             return (GetKeyState((int)key) & 0x8000) != 0;
         }
+
+        public static void PluginInit()
+        {
+            InstallHooks();
+        }
+
+        private static void InstallHooks()
+        {
+            // CutSceneMgr::Update Hook to work as GameTickingEvent
+            Memory.Hook((IntPtr)0x405FA0, new Memory.VoidDelegate(GameTickHook));
+        }
+
+        private static void GameTickHook()
+        {
+            // Checks if game is paused
+            if (Memory.Read1bBool(0x869668) == false) GameTicking?.Invoke();
+        }
+
+        // Events
+        public delegate void GameTickingHanlder();
+        public static event GameTickingHanlder GameTicking;
     }
 }

@@ -6,12 +6,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GTASDK
 {
     public static class Memory
     {
+        public delegate void VoidDelegate();
+
         #region PInvoke
         [DllImport("kernel32.dll")]
         private static extern bool ReadProcessMemory
@@ -126,6 +129,13 @@ namespace GTASDK
         {
             WriteInt32(pointer, Convert.ToInt32(value));
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Read1bBool(int pointer) => Convert.ToBoolean(ReadByte(pointer));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Write1bBool(int pointer, bool value) => WriteByte(pointer, Convert.ToByte(value));
+      
 
         // This is not necessarily a "read" method because changing the memory it points to will change it on the real thing as well.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -272,7 +282,7 @@ namespace GTASDK
         public static LocalHook Hook(IntPtr Address, Delegate functionDelegate)
         {
             var _hook = LocalHook.Create(Address, functionDelegate, null);
-            _hook.ThreadACL.SetInclusiveACL(new int[] { Process.GetCurrentProcess().Threads[0].Id });
+            _hook.ThreadACL.SetExclusiveACL(new int[] {0});           
             return _hook;
         }
         #endregion

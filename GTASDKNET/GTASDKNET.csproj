@@ -107,6 +107,7 @@
     <Compile Include="Base\PluginsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViceCity\CEntity.cs" />
+    <Compile Include="ViceCity\CGame.cs" />
     <Compile Include="ViceCity\CHud.cs" />
     <Compile Include="ViceCity\CMatrix.cs" />
     <Compile Include="ViceCity\CPed.fields.cs" />
@@ -115,6 +116,8 @@
     <Compile Include="ViceCity\CPlaceable.cs" />
     <Compile Include="ViceCity\CPopulation.cs" />
     <Compile Include="ViceCity\CStreaming.cs" />
+    <Compile Include="ViceCity\CWeather.methods.cs" />
+    <Compile Include="ViceCity\CWeather.fields.cs" />
     <Compile Include="ViceCity\CWorld.cs" />
     <Compile Include="Generated\ViceCity\CEntity.Partial.cs" />
   </ItemGroup>
