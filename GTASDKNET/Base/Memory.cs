@@ -13,6 +13,8 @@ namespace GTASDK
 {
     public static class Memory
     {
+        public delegate void VoidDelegate();
+
         #region PInvoke
         [DllImport("kernel32.dll")]
         private static extern bool ReadProcessMemory
@@ -129,6 +131,13 @@ namespace GTASDK
         {
             WriteInt32(pointer, Convert.ToInt32(value));
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool Read1bBool(int pointer) => Convert.ToBoolean(ReadByte(pointer));
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Write1bBool(int pointer, bool value) => WriteByte(pointer, Convert.ToByte(value));
+      
 
         // This is not necessarily a "read" method because changing the memory it points to will change it on the real thing as well.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -16,18 +16,13 @@ namespace VCTest
     [PluginInfo(Author = "EightyVice", Game = GTAGame.ViceCity, Version = "1.0")]
     public class VCTest : Plugin
     {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void CHud__SetHelpMessage([MarshalAs(UnmanagedType.LPWStr)] string message, bool quickmessage, bool permenant);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void CStreaming__RequestModel(int id, int f);
-
         public VCTest(string[] cmdLine)
         {
             AllocConsole();
+            GameTicking += GameTick;
 
+            #region code
             //Memory.Hook((IntPtr)0x55BFC0, new CHud__SetHelpMessage(HelpMessageHook));
-            Memory.Hook((IntPtr)0x4A4410, new CGame._Process(GameProcessHook));
 
             //while (true)
             //{
@@ -46,28 +41,18 @@ namespace VCTest
             //}
 
             //Events.GameTicking += GameTick;
-        }
-        void GameTick()
-        {
-            //Console.WriteLine("Ticked");
-        }
-        static void RequestModelHook(int model, int flag)
-        {
-            Console.WriteLine($"Requested model {model}");
-            // Call original
-            //CStreaming.RequestModel(model, (StreamingFlags)flag);
+
+            // Install hook
+            //Memory.Hook((IntPtr)0x405FA0, new CGame._Process(GameProcessHook));
+            #endregion
         }
 
-        void GameProcessHook()
+        static int counter = 0;
+        void GameTick()
         {
-            
-            //CGame.Process();
-        }
-        static void HelpMessageHook([MarshalAs(UnmanagedType.LPWStr)] string message, bool quickmessage, bool permenant)
-        {
-            Console.WriteLine(message);
-            // Call original
-            CHud.SetHelpMessage(message, quickmessage, permenant);
+            ++counter;
+            Console.WriteLine($"Ticked {counter} Times");
+
         }
     }
 

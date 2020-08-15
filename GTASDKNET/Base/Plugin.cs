@@ -27,22 +27,23 @@ namespace GTASDK
 
         public static void PluginInit()
         {
-            // Hook Events
-            Memory.Hook((IntPtr)0x4A4410, new CGame._Process(Events._GameProcessHook));
-
+            InstallHooks();
         }
 
-
-        public static class Events
+        private static void InstallHooks()
         {
-            public delegate void GameTickingHanlder();
-            public static event GameTickingHanlder GameTicking;
-
-            public static void _GameProcessHook()
-            {
-                GameTicking();      // Raise the event
-                CGame.Process();    // Call original function
-            }
+            // CutSceneMgr::Update Hook to work as GameTickingEvent
+            Memory.Hook((IntPtr)0x405FA0, new Memory.VoidDelegate(GameTickHook));
         }
+
+        private static void GameTickHook()
+        {
+            // Checks if game is paused
+            if (Memory.Read1bBool(0x869668) == false) GameTicking?.Invoke();
+        }
+
+        // Events
+        public delegate void GameTickingHanlder();
+        public static event GameTickingHanlder GameTicking;
     }
 }

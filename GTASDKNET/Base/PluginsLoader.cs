@@ -15,6 +15,7 @@ namespace GTASDK
     {
         public IList<Assembly> Assemblies = new List<Assembly>();
         public IReadOnlyList<Type> Classes;
+        public IReadOnlyList<Type> BaseClasses;
 
         private readonly string _pluginDirectory;
         private readonly string[] _cmdLine;
@@ -61,11 +62,15 @@ namespace GTASDK
                 where cls.BaseType == typeof(Plugin)
                 select cls;
             Classes = classes.ToArray();
+  
 
             foreach (var plugin in Classes)
             {
-                //var PluginStartFunction = plugin.GetMethod("PluginInit", BindingFlags.Static);
-                
+                var baseclass = plugin.BaseType;
+
+                // Get Plugin initialization method
+                var PluginInitMethod = baseclass.GetMethod("PluginInit");
+
                 // Search for all constructors in the script.
                 foreach (var ctor in plugin.GetConstructors())
                 {
@@ -76,7 +81,7 @@ namespace GTASDK
                     {
                         Thread thread = new Thread(() =>
                         {
-                            //PluginStartFunction.Invoke(null, null);
+                            PluginInitMethod.Invoke(null, null);
                             ctor.Invoke(new object[] { _cmdLine });
                         });
                         thread.Start();
