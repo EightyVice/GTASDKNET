@@ -157,7 +157,82 @@ namespace GTASDK
         public static unsafe byte ReadBitsInt8(int bytePointer, byte position, byte amount)
         {
             var byteValue = *(byte*)bytePointer;
-            return (byte) ((byteValue >> position) & (1 << amount));
+            return (byte)((byteValue >> position) & (1 << amount));
+        }
+
+        private static byte SetBits8(byte number, byte value, byte startBit, byte endBit)
+        {
+            //  Create a mask to clear bits i 
+            // through j in n. EXAMPLE: i = 2, 
+            // j = 4. Result should be 11100011. 
+            // For simplicity, we'll use just 8 
+            // bits for the example.
+
+            // will equal sequence of all ls 
+            const int allOnes = ~0;
+
+            // ls before position j, then 0s.  
+            // left = 11100000 
+            var left = allOnes << (endBit + 1);
+
+            // l's after position i.  
+            // right = 00000011 
+            var right = ((1 << startBit) - 1);
+
+            // All ls, except for 0s between i  
+            // and j. mask 11100011 
+            var mask = left | right;
+
+            // Clear bits j through i then put min there
+            // Clear bits j through i. 
+            var nCleared = number & mask;
+
+            // Move m into correct position. 
+            var mShifted = value << startBit;
+
+            // OR them, and we're done! 
+            return (byte)(nCleared | mShifted);
+        }
+
+        private static int SetBits32(int number, int value, byte startBit, byte endBit)
+        {
+            //  Create a mask to clear bits i 
+            // through j in n. EXAMPLE: i = 2, 
+            // j = 4. Result should be 11100011. 
+            // For simplicity, we'll use just 8 
+            // bits for the example.
+
+            // will equal sequence of all ls 
+            var allOnes = ~0;
+
+            // ls before position j, then 0s.  
+            // left = 11100000 
+            var left = allOnes << (endBit + 1);
+
+            // l's after position i.  
+            // right = 00000011 
+            var right = ((1 << startBit) - 1);
+
+            // All ls, except for 0s between i  
+            // and j. mask 11100011 
+            var mask = left | right;
+
+            // Clear bits j through i then put min there
+            // Clear bits j through i. 
+            var nCleared = number & mask;
+
+            // Move m into correct position. 
+            var mShifted = value << startBit;
+
+            // OR them, and we're done! 
+            return nCleared | mShifted;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void WriteBitsInt8(int bytePointer, byte position, byte amount, byte value)
+        {
+            var existingValue = *(byte*)bytePointer;
+            *(byte*)bytePointer = SetBits8(existingValue, value, position, (byte) (position + amount));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
