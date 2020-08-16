@@ -79,13 +79,13 @@ namespace GTASDK
 
         // Casts to double to prevent loss of accuracy on squaring
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float Dot(Vector3 a, Vector3 b)
+        public static float Dot(CVector a, CVector b)
         {
             return (float)((double)a.X * (double)b.X + (double)a.Y * (double)b.Y + (double)a.Z * (double)b.Z);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float DistanceBetweenPoints(Vector3 a, Vector3 b)
+        public static float DistanceBetweenPoints(CVector a, CVector b)
         {
             var xDiff = a.X - b.X;
             var yDiff = a.Y - b.Y;
@@ -94,7 +94,7 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float DistanceBetweenPointsSqr(Vector3 a, Vector3 b)
+        public static float DistanceBetweenPointsSqr(CVector a, CVector b)
         {
             var xDiff = a.X - b.X;
             var yDiff = a.Y - b.Y;
