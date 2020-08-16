@@ -27,6 +27,22 @@ namespace GTASDK.ViceCity
             Memory.CallFunction<_SetModelIndex>(0x4898B0)((IntPtr)BaseAddress, modelIndex);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private CRect GetBoundRectImpl(uint offset)
+        {
+            CRect result = default;
+            GetBoundRect(ref result);
+            return result;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private CVector GetBoundCentreImpl(uint offset)
+        {
+            CVector result = default;
+            GetBoundCentre(ref result);
+            return result;
+        }
+
         [StructLayout(LayoutKind.Sequential)]
         public class _CEntity
         {
