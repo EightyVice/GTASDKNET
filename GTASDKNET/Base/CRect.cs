@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.InteropServices;
 
-namespace GTASDK.ViceCity
+namespace GTASDK
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct CRect
@@ -61,18 +56,18 @@ namespace GTASDK.ViceCity
 
         public bool IsPointInside(ref CVector2D point)
         {
-            return point.x >= Left
-                && point.x <= Right
-                && point.y >= Top
-                && point.y <= Bottom;
+            return point.X >= Left
+                && point.X <= Right
+                && point.Y >= Top
+                && point.Y <= Bottom;
         }
 
         public bool IsCircleInside(ref CVector2D circleCenter, float circleRadius)
         {
-            return Left - circleRadius <= circleCenter.x
-                && circleRadius + Right >= circleCenter.x
-                && Top - circleRadius <= circleCenter.y
-                && circleRadius + Bottom >= circleCenter.y;
+            return Left - circleRadius <= circleCenter.X
+                && circleRadius + Right >= circleCenter.Y
+                && Top - circleRadius <= circleCenter.Y
+                && circleRadius + Bottom >= circleCenter.Y;
         }
 
         public void SetFromCenter(float x, float y, float size)
