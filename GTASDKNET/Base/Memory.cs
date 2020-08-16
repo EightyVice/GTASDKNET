@@ -1,13 +1,7 @@
 ﻿using EasyHook;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace GTASDK
 {
@@ -69,6 +63,18 @@ namespace GTASDK
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void WriteVector(int pointer, CVector vector) => *(CVector*)pointer = vector;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe CVector2D ReadVector2D(int pointer) => *(CVector2D*)pointer;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void WriteVector2D(int pointer, CVector2D vector) => *(CVector2D*)pointer = vector;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe CRect ReadRect(int pointer) => *(CRect*)pointer;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void WriteRect(int pointer, CRect rect) => *(CRect*)pointer = rect;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void CopyRegion(int target, int source, uint length)
