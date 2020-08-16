@@ -170,10 +170,10 @@ namespace GTASDK.ViceCity
         }
 
         // static bool at 0xA10B31
-        public static byte ZoneChangeHasHappened
+        public static int ZoneChangeHasHappened
         {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadByte(0xA10B31);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteByte(0xA10B31, value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadInt32(0xA10B31);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteInt32(0xA10B31, value);
         }
 
         // static unsigned int at 0x9753FC
@@ -182,7 +182,5 @@ namespace GTASDK.ViceCity
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadUInt32(0x9753FC);
             [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteUInt32(0x9753FC, value);
         }
-
-
     }
 }

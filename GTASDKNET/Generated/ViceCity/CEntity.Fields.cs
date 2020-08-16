@@ -8,8 +8,6 @@ namespace GTASDK.ViceCity
         /// <summary>Size of this type in native code, in bytes.</summary>
         public const uint _Size = 0x64U;
 
-
-
         internal IntPtr _vtable
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => (IntPtr)(BaseAddress + 0x0);
@@ -51,12 +49,12 @@ namespace GTASDK.ViceCity
         public byte Type
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadBitsInt8(BaseAddress + 0x50, 0, 3);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteBitsInt8(BaseAddress + 0x50, 0, 3, value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => throw new InvalidOperationException("NOT DONE YET");
         }
         public byte State
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadBitsInt8(BaseAddress + 0x50, 3, 5);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteBitsInt8(BaseAddress + 0x50, 3, 5, value);
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => throw new InvalidOperationException("NOT DONE YET");
         }
         // End of bitfield
 
