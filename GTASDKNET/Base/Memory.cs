@@ -213,7 +213,7 @@ namespace GTASDK
             // bits for the example.
 
             // will equal sequence of all ls 
-            var allOnes = ~0;
+            const int allOnes = ~0;
 
             // ls before position j, then 0s.  
             // left = 11100000 
