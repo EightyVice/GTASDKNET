@@ -51,31 +51,29 @@ namespace GTASDK
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static TDelegate CallFunction<TDelegate>(int pointer)
+        public static TDelegate CallFunction<TDelegate>(int pointer) where TDelegate : Delegate
         {
             return Marshal.GetDelegateForFunctionPointer<TDelegate>((IntPtr)pointer);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe CVector ReadVector(int pointer)
+        public static unsafe TDelegate CallVirtualFunction<TDelegate>(int vtablePointer, uint offset) where TDelegate : Delegate
         {
-            return new CVector(*(float*)pointer,
-                *(float*)(pointer + 4),
-                *(float*)(pointer + 8));
+            var vtable = *(void***)vtablePointer; // a list of function pointers
+            var functionOffset = offset * sizeof(int); // offset to the function pointer from the start of the vtable
+            return Marshal.GetDelegateForFunctionPointer<TDelegate>((IntPtr)(vtable + functionOffset));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe void WriteVector(int pointer, CVector vector)
-        {
-            *(float*)pointer = vector.X;
-            *(float*)(pointer + 4) = vector.Y;
-            *(float*)(pointer + 8) = vector.Z;
-        }
+        public static unsafe CVector ReadVector(int pointer) => *(CVector*)pointer;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void WriteVector(int pointer, CVector vector) => *(CVector*)pointer = vector;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe void CopyRegion(int target, int source, uint length)
         {
-            Buffer.MemoryCopy((void*) source, (void*) target, length, length);
+            Buffer.MemoryCopy((void*)source, (void*)target, length, length);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -137,7 +135,7 @@ namespace GTASDK
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Write1bBool(int pointer, bool value) => WriteByte(pointer, Convert.ToByte(value));
-      
+
 
         // This is not necessarily a "read" method because changing the memory it points to will change it on the real thing as well.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -155,9 +153,19 @@ namespace GTASDK
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static byte[] ReadByteArray(int pointer, uint size)
         {
-            return GetSpan<byte>(pointer, (int)size).ToArray();
+            List<byte> barr = new List<byte>();
+            for (int i = 0; i < size; i++) { barr.Add(ReadByte(pointer + i)); }
+            return barr.ToArray();
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void WriteByteArray(int pointer, byte[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                WriteByte(pointer + i, array[i]);
+            }
+        }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe int ReadBitsInt32(int bytePointer, byte position, int amount)
         {
@@ -169,7 +177,82 @@ namespace GTASDK
         public static unsafe byte ReadBitsInt8(int bytePointer, byte position, byte amount)
         {
             var byteValue = *(byte*)bytePointer;
-            return (byte) ((byteValue >> position) & (1 << amount));
+            return (byte)((byteValue >> position) & (1 << amount));
+        }
+
+        private static byte SetBits8(byte number, byte value, byte startBit, byte endBit)
+        {
+            //  Create a mask to clear bits i 
+            // through j in n. EXAMPLE: i = 2, 
+            // j = 4. Result should be 11100011. 
+            // For simplicity, we'll use just 8 
+            // bits for the example.
+
+            // will equal sequence of all ls 
+            const int allOnes = ~0;
+
+            // ls before position j, then 0s.  
+            // left = 11100000 
+            var left = allOnes << (endBit + 1);
+
+            // l's after position i.  
+            // right = 00000011 
+            var right = ((1 << startBit) - 1);
+
+            // All ls, except for 0s between i  
+            // and j. mask 11100011 
+            var mask = left | right;
+
+            // Clear bits j through i then put min there
+            // Clear bits j through i. 
+            var nCleared = number & mask;
+
+            // Move m into correct position. 
+            var mShifted = value << startBit;
+
+            // OR them, and we're done! 
+            return (byte)(nCleared | mShifted);
+        }
+
+        private static int SetBits32(int number, int value, byte startBit, byte endBit)
+        {
+            //  Create a mask to clear bits i 
+            // through j in n. EXAMPLE: i = 2, 
+            // j = 4. Result should be 11100011. 
+            // For simplicity, we'll use just 8 
+            // bits for the example.
+
+            // will equal sequence of all ls 
+            var allOnes = ~0;
+
+            // ls before position j, then 0s.  
+            // left = 11100000 
+            var left = allOnes << (endBit + 1);
+
+            // l's after position i.  
+            // right = 00000011 
+            var right = ((1 << startBit) - 1);
+
+            // All ls, except for 0s between i  
+            // and j. mask 11100011 
+            var mask = left | right;
+
+            // Clear bits j through i then put min there
+            // Clear bits j through i. 
+            var nCleared = number & mask;
+
+            // Move m into correct position. 
+            var mShifted = value << startBit;
+
+            // OR them, and we're done! 
+            return nCleared | mShifted;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe void WriteBitsInt8(int bytePointer, byte position, byte amount, byte value)
+        {
+            var existingValue = *(byte*)bytePointer;
+            *(byte*)bytePointer = SetBits8(existingValue, value, position, (byte)(position + amount));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -184,8 +267,21 @@ namespace GTASDK
         {
             var existingValue = *(byte*)bytePointer;
             var valueByte = *(byte*)&value; // convert bool to byte, we might as well make it fast :P
-            *(byte*)bytePointer = (byte) (existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex));
+            *(byte*)bytePointer = (byte)(existingValue ^ (-valueByte ^ existingValue) & (1 << bitIndex));
         }
+        // Length without Null terminator
+        public static string ReadString(int pointer, uint length)
+        {
+            return Encoding.ASCII.GetString(ReadByteArray(pointer, length + 1));
+        }
+
+        public static void WriteString(int pointer, string value)
+        {
+            var bytearr = Encoding.ASCII.GetBytes(value);
+            WriteByteArray(pointer, bytearr);
+        }
+
+        
         #endregion
 
         #region Patching
@@ -209,7 +305,7 @@ namespace GTASDK
         public static LocalHook Hook(IntPtr Address, Delegate functionDelegate)
         {
             var _hook = LocalHook.Create(Address, functionDelegate, null);
-            _hook.ThreadACL.SetExclusiveACL(new int[] {0});           
+            _hook.ThreadACL.SetExclusiveACL(new int[] { 0 });
             return _hook;
         }
         #endregion

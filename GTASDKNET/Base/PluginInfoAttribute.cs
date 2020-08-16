@@ -10,7 +10,6 @@ namespace GTASDK
     public class PluginInfoAttribute : Attribute
     {
         public string Author;
-        public GTAGame Game;
         public string Version;
     }
 }

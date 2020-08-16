@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 
 namespace GTASDK.ViceCity
 {
-    public enum StreamingFlags
-    {
-        GAME_REQUEST = 0x1,
-        MISSION_REQUEST = 0x2,
-        PRIORITY_REQUEST = 0x8,
-        NOT_VISIBLE = 0x10
-    };
-
     public class CStreaming
     {
-
+        public static CStreamingInfo GetInfoForModel(int modelID)
+        {
+            IntPtr addr = (IntPtr)(0x94DDD0 + (modelID * 0x14));
+            return new CStreamingInfo(addr);
+        }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CStreaming__RequestModel(int id, int f);

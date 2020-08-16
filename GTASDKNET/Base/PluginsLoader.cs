@@ -15,8 +15,6 @@ namespace GTASDK
     {
         public IList<Assembly> Assemblies = new List<Assembly>();
         public IReadOnlyList<Type> Classes;
-        public IReadOnlyList<Type> BaseClasses;
-
         private readonly string _pluginDirectory;
         private readonly string[] _cmdLine;
 
@@ -59,7 +57,7 @@ namespace GTASDK
             var classes =
                 from asm in Assemblies
                 from cls in asm.GetTypes()
-                where cls.BaseType == typeof(Plugin)
+                where cls.BaseType == typeof(VCPlugin)
                 select cls;
             Classes = classes.ToArray();
   

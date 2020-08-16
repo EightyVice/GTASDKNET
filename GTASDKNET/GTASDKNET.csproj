@@ -93,6 +93,8 @@
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
     <Compile Include="Generated\ViceCity\CPopulation.Partial.cs" />
+    <Compile Include="ViceCity\CAutomobile.fields.cs" />
+    <Compile Include="ViceCity\CAutomobile.methods.cs" />
     <Compile Include="ViceCity\CCivilianPed.cs" />
     <Compile Include="Base\CVector.cs" />
     <Compile Include="Base\GameVersion.cs" />
@@ -111,7 +113,11 @@
     <Compile Include="ViceCity\CPhysical.fields.cs" />
     <Compile Include="ViceCity\CPlaceable.cs" />
     <Compile Include="ViceCity\CPopulation.cs" />
+    <Compile Include="ViceCity\CRunningScript.cs" />
     <Compile Include="ViceCity\CStreaming.cs" />
+    <Compile Include="ViceCity\CStreamingInfo.cs" />
+    <Compile Include="ViceCity\CVehicle.fields.cs" />
+    <Compile Include="ViceCity\CVehicle.methods.cs" />
     <Compile Include="ViceCity\CWeather.methods.cs" />
     <Compile Include="ViceCity\CWeather.fields.cs" />
     <Compile Include="ViceCity\CWorld.cs" />

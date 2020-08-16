@@ -12,7 +12,7 @@ using GTASDK.ViceCity;
 
 namespace GTASDK
 {
-    public class Plugin
+    public class VCPlugin
     {
         [DllImport("USER32.dll")]
         static extern short GetKeyState(int nVirtKey);
