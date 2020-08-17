@@ -16,6 +16,7 @@ namespace GTASDK.ViceCity
         public CRunningScript Next => new CRunningScript((IntPtr)Memory.ReadInt32(BaseAddress + 0x0));
         public CRunningScript Previous => new CRunningScript((IntPtr)Memory.ReadInt32(BaseAddress + 0x4));
 
+
         public string Name
         {
             get => Memory.ReadString(BaseAddress + 0x8, 7);
