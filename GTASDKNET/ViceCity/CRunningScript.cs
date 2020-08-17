@@ -30,70 +30,70 @@ namespace GTASDK.ViceCity
             set => Memory.WriteInt32(BaseAddress + 0x10, value);
         }
 
-        public bool m_bIsActive
+        public bool IsActive
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0078);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x0078, value);
         }
-        public bool m_bCondResult
+        public bool CondResult
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0079);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x0079, value);
         }
-        public bool m_bUseMissionCleanup
+        public bool UseMissionCleanup
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x007A);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x007A, value);
         }
-        public bool m_bAwake
+        public bool Awake
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x007B);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x007B, value);
         }
-        public int m_nWakeTime
+        public int WakeTime
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.ReadInt32(BaseAddress + 0x007C);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.WriteInt32(BaseAddress + 0x007C, value);
         }
-        public short m_nLogicalOp
+        public short LogicalOp
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.ReadInt16(BaseAddress + 0x0080);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.WriteInt16(BaseAddress + 0x0080, value);
         }
-        public bool m_bNotFlag
+        public bool NotFlag
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0082);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x0082, value);
         }
-        public bool m_bWastedBustedCheck
+        public bool WastedBustedCheck
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0083);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x0083, value);
         }
-        public bool m_bWastedOrBusted
+        public bool WastedOrBusted
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0084);
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.Write1bBool(BaseAddress + 0x0084, value);
         }
-        public bool m_bIsMission
+        public bool IsMission
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.Read1bBool(BaseAddress + 0x0085);
@@ -101,6 +101,11 @@ namespace GTASDK.ViceCity
             set => Memory.Write1bBool(BaseAddress + 0x0085, value);
         }
 
-
+        [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+        public delegate void _PorcessOneCommand(IntPtr _this);
+        public void ProcessOneCommand()
+        {
+            Memory.CallFunction<_PorcessOneCommand>(0x44FBE0)((IntPtr)BaseAddress);
+        }
     }
 }

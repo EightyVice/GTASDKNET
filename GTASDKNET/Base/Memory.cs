@@ -311,7 +311,7 @@ namespace GTASDK
 
         public static IntPtr Allocate(uint size)
         {
-            Marshal.AllocHGlobal(size);
+            return Marshal.AllocHGlobal((int)size);
         }
         public static void ZeroMemory(IntPtr AtAddress, uint size)
         {

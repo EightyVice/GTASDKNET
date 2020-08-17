@@ -42,6 +42,8 @@ namespace GTASDK
             if (Memory.Read1bBool(0x869668) == false) GameTicking?.Invoke();
         }
 
+        public Scripting Command = new Scripting();
+
         // Events
         public delegate void GameTickingHanlder();
         public static event GameTickingHanlder GameTicking;

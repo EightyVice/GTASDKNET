@@ -55,8 +55,8 @@ namespace VCTest
 
             if (IsKeyPressed(Keys.F7))
             {
-                Memory.WriteString(0x68F714, "DEAD\0\0");
-                Console.WriteLine(Memory.ReadString(0x68F714, 8));
+                // set_weather 5 (HURRICANE)
+                Command[0x1B6].Call((byte)5);
             }
         }
     }
