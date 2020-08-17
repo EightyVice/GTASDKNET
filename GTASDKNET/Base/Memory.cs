@@ -31,6 +31,8 @@ namespace GTASDK
             uint nSize,
             out int lpNumberOfBytesWritten
         );
+        [DllImport("Kernel32.dll", EntryPoint = "RtlZeroMemory", SetLastError = false)]
+        static extern void ZeroMemory(IntPtr dest, IntPtr size);
         #endregion
 
         #region Reading & Writing
@@ -307,6 +309,14 @@ namespace GTASDK
             return null;
         }
 
+        public static IntPtr Allocate(uint size)
+        {
+            Marshal.AllocHGlobal(size);
+        }
+        public static void ZeroMemory(IntPtr AtAddress, uint size)
+        {
+            ZeroMemory(AtAddress, size);
+        }
         #endregion
 
         #region Hooking
