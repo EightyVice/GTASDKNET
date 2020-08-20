@@ -56,7 +56,8 @@ namespace VCTest
             if (IsKeyPressed(Keys.F7))
             {
                 // set_weather 5 (HURRICANE)
-                Command[0x1B6].Call((byte)5);
+                Command[ScriptCommands.FORCE_WEATHER_NOW].Call((byte)5);
+                
             }
         }
     }

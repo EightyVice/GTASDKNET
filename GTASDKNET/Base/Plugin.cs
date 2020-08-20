@@ -34,8 +34,8 @@ namespace GTASDK
         {
             // CutSceneMgr::Update Hook to work as GameTickingEvent
             Memory.Hook((IntPtr)0x405FA0, new Memory.VoidDelegate(GameTickHook));
-        }
 
+        }
         private static void GameTickHook()
         {
             // Checks if game is paused
@@ -47,5 +47,8 @@ namespace GTASDK
         // Events
         public delegate void GameTickingHanlder();
         public static event GameTickingHanlder GameTicking;
+
+        public delegate void GameInitHandler();
+        public static event GameInitHandler GameInit;
     }
 }

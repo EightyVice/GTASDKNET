@@ -115,7 +115,7 @@ namespace GTASDK.ViceCity
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.WriteFloat(BaseAddress + 0x00C8, value);
         }
-        public float BuoyancyConstant
+        public float Buoyancy
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.ReadFloat(BaseAddress + 0x00CC);
@@ -129,7 +129,7 @@ namespace GTASDK.ViceCity
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Memory.WriteVector(BaseAddress + 0x00D0, value);
         }
-        public Byte uCollideInfo
+        public byte CollideInfo
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get => Memory.ReadByte(BaseAddress + 0x00E0);
@@ -151,6 +151,31 @@ namespace GTASDK.ViceCity
             set => Memory.WriteByte(BaseAddress + 0x00F8, value);
         }
 
+        // CEntity *m_apCollisionRecords[6];
+
+        public float TotalSpeed
+        {
+            get => Memory.ReadFloat(BaseAddress + 0x100);
+            set => Memory.WriteFloat(BaseAddress + 0x100, value);
+        }
+
+        public float CollisionPower
+        {
+            get => Memory.ReadFloat(BaseAddress + 0x104);
+            set => Memory.WriteFloat(BaseAddress + 0x104, value);
+        }
+        // int PhyscColliding;
+        public CVector CollisionPowerVector
+        {
+            get => Memory.ReadVector(BaseAddress + 0x10C);
+            set => Memory.WriteVector(BaseAddress + 0x10C, value);
+        }
+
+        public short ComponentCollision
+        {
+            get => Memory.ReadInt16(BaseAddress + 0x118);
+            set => Memory.WriteInt16(BaseAddress + 0x118, value);
+        }
     }
 
 }
