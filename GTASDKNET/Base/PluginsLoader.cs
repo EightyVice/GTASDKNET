@@ -6,7 +6,6 @@ using System.Reflection;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
-using GTASDK.Base;
 using System.Threading;
 
 namespace GTASDK
@@ -36,10 +35,10 @@ namespace GTASDK
                             Assemblies.Add(Assembly.LoadFrom(file));
                             break;
                         case ".cs":
-                            Assemblies.Add(RoslynCompiler.CompileCSharpToAssembly(File.ReadAllText(file), file));
+                            Assemblies.Add(SourceCompiler.Compile(File.ReadAllText(file), SourceCompiler.Lang.CSharp));
                             break;
                         case ".vb":
-                            Assemblies.Add(RoslynCompiler.CompileVbToAssembly(File.ReadAllText(file), file));
+                            Assemblies.Add(SourceCompiler.Compile(File.ReadAllText(file), SourceCompiler.Lang.VB));
                             break;
                     }
                 });
