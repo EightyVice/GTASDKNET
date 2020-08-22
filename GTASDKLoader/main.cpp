@@ -5,7 +5,7 @@ using namespace System::Reflection;
 using namespace System::Windows::Forms;
 
 void Managed() {
-	auto assembly = Assembly::LoadFrom("GTASDKNET.dll");
+	auto assembly = Assembly::LoadFrom("D:\\GTA III\\mss\\GTASDK.NET\\GTASDKNET.dll");
 	auto main = assembly->GetType("GTASDK.Main");
 
 	if (main) {

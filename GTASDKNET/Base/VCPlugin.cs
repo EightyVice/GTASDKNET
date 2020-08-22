@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 
 using System.Windows.Forms;
-using GTASDK.ViceCity;
 
-namespace GTASDK
+namespace GTASDK.ViceCity
 {
     public class VCPlugin
     {
@@ -48,7 +47,5 @@ namespace GTASDK
         public delegate void GameTickingHanlder();
         public static event GameTickingHanlder GameTicking;
 
-        public delegate void GameInitHandler();
-        public static event GameInitHandler GameInit;
     }
 }

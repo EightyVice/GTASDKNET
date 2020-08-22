@@ -7,6 +7,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Threading;
+using GTASDK.III;
+using GTASDK.ViceCity;
 
 namespace GTASDK
 {
@@ -56,7 +58,7 @@ namespace GTASDK
             var classes =
                 from asm in Assemblies
                 from cls in asm.GetTypes()
-                where cls.BaseType == typeof(VCPlugin)
+                where cls.BaseType == typeof(IIIPlugin)
                 select cls;
             Classes = classes.ToArray();
   
@@ -66,7 +68,7 @@ namespace GTASDK
                 var baseclass = plugin.BaseType;
 
                 // Get Plugin initialization method
-                var PluginInitMethod = baseclass.GetMethod("PluginInit");
+                //var PluginInitMethod = baseclass.GetMethod("PluginInit");
 
                 // Search for all constructors in the script.
                 foreach (var ctor in plugin.GetConstructors())
@@ -78,7 +80,7 @@ namespace GTASDK
                     {
                         Thread thread = new Thread(() =>
                         {
-                            PluginInitMethod.Invoke(null, null);
+                            //PluginInitMethod.Invoke(null, null);
                             ctor.Invoke(new object[] { _cmdLine });
                         });
                         thread.Start();

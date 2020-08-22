@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\GTAVC\</OutputPath>
+    <OutputPath>..\..\GTA III\mss\GTASDK.NET\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -71,9 +71,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\CVector2D.cs" />
+    <Compile Include="Base\IIIPlugin.cs" />
     <Compile Include="Base\SourceCompiler.cs" />
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
+    <Compile Include="III\CHud.cs" />
     <Compile Include="ViceCity\CAutomobile.fields.cs" />
     <Compile Include="ViceCity\CAutomobile.methods.cs" />
     <Compile Include="Generated\ViceCity\CEntity.Fields.cs" />
@@ -85,7 +87,7 @@
     <Compile Include="Base\GameVersion.cs" />
     <Compile Include="Base\Main.cs" />
     <Compile Include="Base\Memory.cs" />
-    <Compile Include="Base\Plugin.cs" />
+    <Compile Include="Base\VCPlugin.cs" />
     <Compile Include="Base\PluginEventsManager.cs" />
     <Compile Include="Base\PluginsLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,7 +112,6 @@
     <Compile Include="ViceCity\ScriptCommands.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="III\" />
     <Folder Include="SanAndreas\" />
   </ItemGroup>
   <ItemGroup>

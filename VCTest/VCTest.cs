@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GTASDK;
 using GTASDK.ViceCity;
-using EasyHook;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
