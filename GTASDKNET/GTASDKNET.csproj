@@ -95,6 +95,7 @@
     <Compile Include="ViceCity\CGame.cs" />
     <Compile Include="ViceCity\CHud.cs" />
     <Compile Include="ViceCity\CMatrix.cs" />
+    <Compile Include="ViceCity\CMessages.cs" />
     <Compile Include="ViceCity\CPed.fields.cs" />
     <Compile Include="ViceCity\CPed.methods.cs" />
     <Compile Include="ViceCity\CPhysical.fields.cs" />
