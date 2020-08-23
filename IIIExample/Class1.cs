@@ -13,15 +13,16 @@ namespace IIIExample
     {
         public IIIExample(string[] mainArgs)
         {
-            MessageBox.Show("wait");
-            while (true)
+            //MessageBox.Show("wait");
+            GameTicking += GameTick;
+        }
+
+        void GameTick()
+        {
+            if (IsKeyPressed(Keys.F6))
             {
-                if (IsKeyPressed(Keys.F6))
-                {
-                    CHud.SetHelpMessage("Hello from C#");
-                }
+                CHud.SetHelpMessage("Hello from C#");
             }
         }
     }
 }
-Class1.cs

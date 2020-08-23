@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GTASDK.ViceCity
+namespace GTASDK
 {
     public class Scripting
     {
@@ -57,7 +57,7 @@ namespace GTASDK.ViceCity
                 IntPtr scbufptr = Memory.Allocate((uint)buffer.Length);
                 Marshal.Copy(buffer, 0, scbufptr, buffer.Length);
 
-                CRunningScript script = new CRunningScript(scriptptr);
+                ViceCity.CRunningScript script = new ViceCity.CRunningScript(scriptptr);
 
                 script.Name = "gta-sdk";
                 script.IsMission = false;

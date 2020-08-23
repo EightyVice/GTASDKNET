@@ -68,7 +68,7 @@ namespace GTASDK
                 var baseclass = plugin.BaseType;
 
                 // Get Plugin initialization method
-                //var PluginInitMethod = baseclass.GetMethod("PluginInit");
+                var PluginInitMethod = baseclass.GetMethod("PluginInit");
 
                 // Search for all constructors in the script.
                 foreach (var ctor in plugin.GetConstructors())
@@ -80,7 +80,7 @@ namespace GTASDK
                     {
                         Thread thread = new Thread(() =>
                         {
-                            //PluginInitMethod.Invoke(null, null);
+                            PluginInitMethod.Invoke(null, null);
                             ctor.Invoke(new object[] { _cmdLine });
                         });
                         thread.Start();

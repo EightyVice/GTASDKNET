@@ -21,5 +21,28 @@ namespace GTASDK.III
             return (GetKeyState((int)key) & 0x8000) != 0;
         }
 
+        public static void PluginInit()
+        {
+            InstallHooks();
+        }
+
+        private static void InstallHooks()
+        {
+            // CutSceneMgr::Update Hook to work as GameTickingEvent
+            Memory.Hook((IntPtr)0x404EE0, new Memory.VoidDelegate(GameTickHook));
+
+        }
+        private static void GameTickHook()
+        {
+            // Checks if game is paused
+            if (Memory.Read1bBool(0x8F5B9D) == false) GameTicking?.Invoke();
+        }
+
+        public Scripting Command = new Scripting();
+
+        // Events
+        public delegate void GameTickingHanlder();
+        public static event GameTickingHanlder GameTicking;
+
     }
 }
