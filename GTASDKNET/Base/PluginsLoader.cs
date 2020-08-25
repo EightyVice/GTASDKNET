@@ -58,7 +58,7 @@ namespace GTASDK
             var classes =
                 from asm in Assemblies
                 from cls in asm.GetTypes()
-                where cls.BaseType == typeof(IIIPlugin)
+                where cls.BaseType == typeof(IIIPlugin) || cls.BaseType == typeof(VCPlugin)
                 select cls;
             Classes = classes.ToArray();
   
