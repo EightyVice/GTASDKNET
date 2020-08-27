@@ -14,7 +14,6 @@ namespace GTASDK
     {
         public static void Init()
         {
-            //MessageBox.Show("INVOKED");
             // Load plugins
             PluginsLoader loader = new PluginsLoader(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), Environment.GetCommandLineArgs());
             loader.LoadPluginAssemblies();

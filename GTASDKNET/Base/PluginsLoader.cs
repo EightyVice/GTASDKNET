@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using GTASDK.III;
 using GTASDK.ViceCity;
+using GTASDK.SanAndreas;
 
 namespace GTASDK
 {
@@ -58,7 +59,7 @@ namespace GTASDK
             var classes =
                 from asm in Assemblies
                 from cls in asm.GetTypes()
-                where cls.BaseType == typeof(IIIPlugin) || cls.BaseType == typeof(VCPlugin)
+                where cls.BaseType == typeof(IIIPlugin) || cls.BaseType == typeof(VCPlugin) || cls.BaseType == typeof(SAPlugin)
                 select cls;
             Classes = classes.ToArray();
   

@@ -7,7 +7,7 @@ using namespace System::IO;
 
 void Managed() {
 	String^ assemblyLocaiton = "";
-	if (File::Exists("gta-vc.exe") || File::Exists("..\\gta3.exe")) { assemblyLocaiton = "GTASDK.NET\\GTASDKNET.dll"; }
+	if (File::Exists("gta-vc.exe") || File::Exists("gta_sa.exe") ||  File::Exists("..\\gta3.exe")) { assemblyLocaiton = "GTASDK.NET\\GTASDKNET.dll"; }
 
 	auto assembly = Assembly::LoadFrom(assemblyLocaiton);
 	auto main = assembly->GetType("GTASDK.Main");

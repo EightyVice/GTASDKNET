@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Base\CVector2D.cs" />
     <Compile Include="Base\IIIPlugin.cs" />
+    <Compile Include="Base\SAPlugin.cs" />
     <Compile Include="Base\SourceCompiler.cs" />
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
