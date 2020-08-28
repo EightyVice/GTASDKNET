@@ -49,7 +49,7 @@ namespace GTASDK.ViceCity
         public byte Type
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)] get => Memory.ReadBitsInt8(BaseAddress + 0x50, 0, 3);
-            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => throw new InvalidOperationException("NOT DONE YET");
+            [MethodImpl(MethodImplOptions.AggressiveInlining)] set => Memory.WriteBitsInt8(BaseAddress + 0x50, 0, 3, value);
         }
         public byte State
         {
