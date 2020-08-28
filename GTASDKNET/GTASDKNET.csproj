@@ -77,12 +77,12 @@
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
     <Compile Include="III\CHud.cs" />
+    <Compile Include="SanAndreas\CEntity.fields.cs" />
     <Compile Include="ViceCity\CAutomobile.fields.cs" />
     <Compile Include="ViceCity\CAutomobile.methods.cs" />
     <Compile Include="Generated\ViceCity\CEntity.Fields.cs" />
     <Compile Include="Generated\ViceCity\CEntity.Methods.cs" />
     <Compile Include="Generated\ViceCity\CPopulation.Fields.cs" />
-    <Compile Include="Generated\ViceCity\CPopulation.Methods.cs" />
     <Compile Include="ViceCity\CCivilianPed.cs" />
     <Compile Include="Base\CVector.cs" />
     <Compile Include="Base\GameVersion.cs" />
@@ -113,9 +113,7 @@
     <Compile Include="ViceCity\CWorld.cs" />
     <Compile Include="ViceCity\ScriptCommands.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SanAndreas\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -43,25 +43,6 @@ namespace GTASDK.ViceCity
             GetBoundCentre(ref result);
             return result;
         }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public class _CEntity
-        {
-            //------------ Static Members ------------
-            public IntPtr __vtable_CEntity;     //
-            public CPlaceable m_placement;      //(0x72)
-            public IntPtr m_pRwObject;
-            public byte nTypeStatus;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)] public byte[] Flags;
-            private byte _pad1;
-            private byte _pad2;
-            public short ScanCode;
-            public short RandomSpeed;
-            public short ModelIndex;            //
-            public byte Level;
-            public byte Interior;
-            public IntPtr FirstRef;
-        }
     }
 
 }
