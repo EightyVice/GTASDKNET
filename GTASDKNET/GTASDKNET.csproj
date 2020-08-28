@@ -76,6 +76,12 @@
     <Compile Include="Base\SourceCompiler.cs" />
     <Compile Include="Base\PluginOptionsAttribute.cs" />
     <Compile Include="Base\PluginInfoAttribute.cs" />
+    <Compile Include="Generated\ViceCity\CPed.Fields.cs" />
+    <Compile Include="Generated\ViceCity\CPed.Methods.cs" />
+    <Compile Include="Generated\ViceCity\CPopulation.Methods.cs" />
+    <Compile Include="Generated\ViceCity\CVehicle.Fields.cs" />
+    <Compile Include="Generated\ViceCity\CVehicle.Methods.cs" />
+    <Compile Include="Generated\ViceCity\ePedType.cs" />
     <Compile Include="III\CHud.cs" />
     <Compile Include="SanAndreas\CEntity.fields.cs" />
     <Compile Include="ViceCity\CAutomobile.fields.cs" />
@@ -101,7 +107,6 @@
     <Compile Include="ViceCity\CPed.methods.cs" />
     <Compile Include="ViceCity\CPhysical.fields.cs" />
     <Compile Include="ViceCity\CPlaceable.cs" />
-    <Compile Include="ViceCity\CPopulation.cs" />
     <Compile Include="ViceCity\CRunningScript.cs" />
     <Compile Include="Base\CRect.cs" />
     <Compile Include="ViceCity\CStreaming.cs" />
