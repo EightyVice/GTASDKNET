@@ -10,3 +10,6 @@ No. GTASDK.NET allows you to write .NET dll that can be injected and call the ga
 
 ## What else I can do with it?
 Beside calling game functions, You are on the process with .NET environment! you can do anything that .NET gives you. Design your form and show it, get SharpDX and draw some lines, It's up to your imagination!
+
+## For help & support
+join our discord server: https://discord.gg/M5KmxDH
