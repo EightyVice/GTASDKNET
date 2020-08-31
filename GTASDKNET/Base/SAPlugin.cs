@@ -35,9 +35,9 @@ namespace GTASDK.SanAndreas
         }
         private static void GameTickHook()
         {
-            // Checks if game is paused // TODO
-            //if (Memory.Read1bBool(0x869668) == false)
-            GameTicking?.Invoke();
+            // Checks if game is paused
+            if (Memory.Read1bBool(0xBA67A4) == false) GameTicking?.Invoke();
+            Memory.CallFunction<Memory.VoidDelegate>(0x4D5D00)();
         }
 
         public Scripting Command = new Scripting();

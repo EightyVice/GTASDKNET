@@ -84,6 +84,7 @@
     <Compile Include="Generated\ViceCity\ePedType.cs" />
     <Compile Include="III\CHud.cs" />
     <Compile Include="SanAndreas\CEntity.fields.cs" />
+    <Compile Include="SanAndreas\CHud.cs" />
     <Compile Include="ViceCity\CAutomobile.fields.cs" />
     <Compile Include="ViceCity\CAutomobile.methods.cs" />
     <Compile Include="Generated\ViceCity\CEntity.Fields.cs" />
